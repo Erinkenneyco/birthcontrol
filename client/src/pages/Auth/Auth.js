@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "../../components/Login";
 import Signup from "../../components/Signup";
-import "./Auth.scss";
+//import "./Auth.scss";
 import { UserConsumer } from '../../context';
 
 function Auth(props) {
