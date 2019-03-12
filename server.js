@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const colors = require("colors");
 const mongoose = require("mongoose");
@@ -9,7 +11,9 @@ const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
 
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(logger("dev"));
 app.use(flash())
