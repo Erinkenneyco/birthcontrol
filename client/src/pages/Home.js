@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-class Home extends Component {
+import Jumbotron from 'react-bootstrap/Jumbotron';
+export default class Home extends Component {
   state = {
     loggedIn: false
   };
@@ -10,10 +10,20 @@ class Home extends Component {
         <div>
           <img src="FlowSentialWave.jpg" alt="japanese_wave" width="500" height="600"/>
 
-<div class="col-md-4 LOGIN">
+<div class="col-md-12 LOGIN">
  	<br/>
+   <Jumbotron>
+  <h1>Hello, world!</h1>
+  <p>
+    This is a simple hero unit, a simple jumbotron-style component for calling
+    extra attention to featured content or information.
+  </p>
+  <p>
 	<button type="button" class="btn btn-primary">Create Account</button>
-	<button type="button" class="btn btn-secondary">Login</button>
+  <br/>
+	<button type="button" class="btn btn-secondary">Login</button>  </p>
+</Jumbotron>;
+	
 
 	<br/>
 
@@ -26,8 +36,6 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
 
 
 {/* 
