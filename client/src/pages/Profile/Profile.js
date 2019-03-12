@@ -1,5 +1,5 @@
 import React from "react";
-import "./Profile.scss";
+//import "./Profile.scss";
 import { UserConsumer } from '../../context';
 import { Button } from "reactstrap";
 import { Link} from "react-router-dom"

@@ -1,37 +1,42 @@
-import React, { Component } from 'react';
-import TempCollect from './TempCollect';
+// listens for click to run algoritm 
 
-export default class Create extends Component {
+import React, { Component } from "react";
+
+class TempCollect extends Component {
+
+    handleButtonClick = event => {
+        // your code here
+        }
 
     render() {
-
         return (
-
             <div style={{marginTop: 10}}>
-                <h3>Log your temperature and any symptoms or notes you have!!</h3>
+                <h3>Log your temperature and any symptoms or notes you have!!
+                
+                TEST!!!!</h3>
                 <br/>
                 <br/>
 
-                <form className="form-inline">
-                    <div className="form-group">
-                        <label className="sr-only" for="exampleInputAmount">Temperature </label>
-                        <div className="input-group">
-                        <div className="input-group-addon"><i className="fas fa-temperature-low"></i></div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputAmount">Temperature (in degrees)</label>
+                        <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-temperature-low"></i></div>
                         <input type="text" class="form-control" id="exampleInputAmount" placeholder="Temperature"></input>
-                        <div className="input-group-addon"> .00 </div>
+                        <div class="input-group-addon"> .00 </div>
                         </div>
                     </div>
                 </form>
                    <br/>
                    <br/>
 
-                   <form className="form-inline">
-                    <div className="form-group">
-                        <label className="sr-only" for="exampleInputAmount">Weight</label>
-                        <div className="input-group">
-                        <div className="input-group-addon"><i className="fas fa-weight"></i></div> 
-                        <input type="text" className="form-control" id="exampleInputAmount" placeholder="Weight"></input>
-                        <div className="input-group-addon"> .00 </div>
+                   <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputAmount">Weight (in pounds)</label>
+                        <div class="input-group">
+                        <div class="input-group-addon"><i class="fas fa-weight"></i></div> 
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Weight"></input>
+                        <div class="input-group-addon"> .00 </div>
                         </div>
                     </div>
                     </form>
@@ -40,11 +45,11 @@ export default class Create extends Component {
                     <br/>
 
                     <form>
-                    <div className="form-group">
-                    <i className="fas fa-bed"></i> <label for="hoursSlept"> Hours Slept</label>          
+                    <div class="form-group">
+                    <i class="fas fa-bed"></i> <label for="hoursSlept"> How many hours did you sleep last night?</label>          
 
 
-                    <select className="form-control">
+                    <select class="form-control">
                         <option placeholder="0">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -64,11 +69,11 @@ export default class Create extends Component {
                 <br/>
 
                 <form>
-                    <div className="form-group">
-                    <i className="fas fa-tint"></i> <label for="spotting">Rate your spotting</label>          
+                    <div class="form-group">
+                    <i class="fas fa-tint"></i> <label for="spotting"> If any, how would you rate your spotting?</label>          
 
 
-                    <select className="form-control">
+                    <select class="form-control">
                         <option placeholder="5 is some serious spotting!">5 is some serious spotting!</option>
                         <option>0</option>
                         <option>1</option>
@@ -82,13 +87,13 @@ export default class Create extends Component {
                 <br/>
 
                 <form>
-                <i className="fas fa-cocktail"></i> <label for="hangover">Are you hungover</label>
-                    <div className="checkbox">
+                <i class="fas fa-cocktail"></i> <label for="hangover">Are you hungover?</label>
+                    <div class="checkbox">
                         <label>
                             <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..."></input> Yes
                          </label>
                         </div>
-                        <div className="checkbox">
+                        <div class="checkbox">
                         <label>
                             <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..."></input> No
                          </label>
@@ -100,17 +105,18 @@ export default class Create extends Component {
 
                     <form>
                     <div>
-                    <label for="symptoms">Symptoms<textarea className="form-control" rows="3" placeholder="What symptoms are you experiencing?"></textarea></label>
+                    <textarea class="form-control" rows="3" placeholder="What symptoms are you experiencing?"></textarea>
                     </div>
                     </form>
                     <br/>
                     
                     
 
-                    <button type="submit" className="btn btn-primary">Log Entry</button>
+                    <button type="submit" class="btn btn-primary">Log Entry</button>
                            
             </div>
-            
         )
     }
 }
+
+export default TempCollect;
