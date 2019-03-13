@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const logRoutes = express.Router();
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const colors = require("colors");
 const mongoose = require("mongoose");
@@ -9,7 +12,10 @@ const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
 
+app.use(cors());
+app.use('/logs',logRoutes);
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(logger("dev"));
 app.use(flash())
@@ -30,12 +36,29 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactauth", { useNewUrlParser: true }, function(err) {
+mongoose.connect(config.DB, process.env.MONGODB_URI || "mongodb://localhost/reactauth", "mongodb://localhost/logs", { useNewUrlParser: true }, function(err) {
     if (err) throw err;
     console.log(`🐆  mongoose connection successful 🐆`.yellow);
     app.listen(PORT, (err)=> {
         if (err) throw err;
         console.log(`🌎  connected on port ${PORT} 🌍`.cyan)
+    });
+});
+
+logRoutes.route('/').get(function(req, res) {
+    log.find(function(err, logs){
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(logs);
+        }
+    });
+});
+
+logRoutes.route('/:id').get(function(req, res) {
+let id = req.params.id;
+Log.findById(id, function(err, log) {
+    res.json(log);
     });
 });
 
