@@ -1,7 +1,7 @@
 const path = require("path");
 const router = require("express").Router();
 const userRoutes = require("./userRoutes");
-const logRoutes = require("./log");
+const logRoutes = require("./logs");
 
 router.use("/users", userRoutes);
 
