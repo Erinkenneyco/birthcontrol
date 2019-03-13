@@ -99,7 +99,7 @@ export class CreateForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log('The values are ${this.state.temperature}, ${this.state.weight}, ${this.state.hours_slept}, ${this.state.rate_your_spotting}, ${this.state.are_you_hungover}, ${this.state.symptoms}')
+    console.log(`The values are ${this.state.temperature}, ${this.state.weight}, ${this.state.hours_slept}, ${this.state.rate_your_spotting}, ${this.state.are_you_hungover}, ${this.state.symptoms}`)
     this.setState({
       temperature: '',
       weight: '',

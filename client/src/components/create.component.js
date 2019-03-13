@@ -282,6 +282,23 @@ export default class Create extends Component {
                     <br/>
 
                     <form>
+                    <i class="fas fa-pills"></i> <label for="birthcontrol">Did you take your birth control?</label>
+                    <div className="checkbox">
+                        <label>
+                            <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..."></input> Yes
+                         </label>
+                        </div>
+                        <div className="checkbox">
+                        <label>
+                            <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..."></input> No
+                         </label>
+                        </div>
+                    </form>
+
+                    <br/>
+                    <br/>
+
+                    <form>
                     <div>
                     <label for="symptoms">Symptoms<textarea className="form-control" rows="3" placeholder="What symptoms are you experiencing?"></textarea></label>
                     </div>
