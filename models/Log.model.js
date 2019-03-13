@@ -1,35 +1,35 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Logs = new Schema ({
-    logs_temp: {
+let Log = new Schema ({
+    log_temp: {
         type: Number,
         required: true 
     },
-    logs_weight: {
+    log_weight: {
         type: Number,
         required: true
     },
-    logs_sleep: {
+    log_sleep: {
         type: Number,
         required: true
     },
-    logs_spotting: {
+    log_spotting: {
         type: Number,
         required: true
     },
-    logs_hungover: {
+    log_hungover: {
         type: Boolean,
         required: true
     },
-    logs_bc: {
+    log_bc: {
         type: Boolean,
         required: true
     },
-    logs_symptoms: {
+    log_symptoms: {
         type: String,
         required: false
     }
 });
 
-module.exports = mongoose.model('Logs', Logs);
+module.exports = mongoose.model('Log', Log);

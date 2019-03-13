@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const logRoutes = express.Router();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = process.env.PORT || 3001;
@@ -12,6 +13,7 @@ const logger = require("morgan");
 const flash = require('connect-flash');
 
 app.use(cors());
+app.use('/logs',logRoutes);
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
@@ -40,6 +42,16 @@ mongoose.connect(config.DB, process.env.MONGODB_URI || "mongodb://localhost/reac
     app.listen(PORT, (err)=> {
         if (err) throw err;
         console.log(`🌎  connected on port ${PORT} 🌍`.cyan)
+    });
+});
+
+logRoutes.route('/').get(function(req, res) {
+    log.find(function(err, logs){
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(logs);
+        }
     });
 });
 
