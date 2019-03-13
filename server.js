@@ -55,5 +55,12 @@ logRoutes.route('/').get(function(req, res) {
     });
 });
 
+logRoutes.route('/:id').get(function(req, res) {
+let id = req.params.id;
+Log.findById(id, function(err, log) {
+    res.json(log);
+    });
+});
+
 
 

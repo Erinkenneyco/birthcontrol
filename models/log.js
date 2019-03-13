@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Log = new Schema ({
+const logSchema = new Schema ({
     log_temp: {
         type: Number,
         required: true 
@@ -32,4 +32,6 @@ let Log = new Schema ({
     }
 });
 
-module.exports = mongoose.model('Log', Log);
+const Log = mongoose.model("Log", logSchema);
+
+module.exports = Log;
