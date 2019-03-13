@@ -3,25 +3,32 @@ const Schema = mongoose.Schema;
 
 let Logs = new Schema ({
     logs_temp: {
-        type: Number 
+        type: Number,
+        required: true 
     },
     logs_weight: {
-        type: Number
+        type: Number,
+        required: true
     },
     logs_sleep: {
-        type: Number
+        type: Number,
+        required: true
     },
     logs_spotting: {
-        type: Number
+        type: Number,
+        required: true
     },
     logs_hungover: {
-        type: Boolean
+        type: Boolean,
+        required: true
     },
     logs_bc: {
-        type: Boolean
+        type: Boolean,
+        required: true
     },
     logs_symptoms: {
-        type: String
+        type: String,
+        required: false
     }
 });
 
