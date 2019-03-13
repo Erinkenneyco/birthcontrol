@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactauth", { useNewUrlParser: true }, function(err) {
+mongoose.connect(config.DB, process.env.MONGODB_URI || "mongodb://localhost/reactauth", { useNewUrlParser: true }, function(err) {
     if (err) throw err;
     console.log(`🐆  mongoose connection successful 🐆`.yellow);
     app.listen(PORT, (err)=> {
