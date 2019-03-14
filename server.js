@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const logRoutes = express.Router();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = process.env.PORT || 3001;
@@ -12,8 +11,8 @@ const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
 
+const db = require("./models");
 app.use(cors());
-app.use('/logs',logRoutes);
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
@@ -36,14 +35,48 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-mongoose.connect(config.DB, process.env.MONGODB_URI || "mongodb://localhost/reactauth", "mongodb://localhost/logs", { useNewUrlParser: true }, function(err) {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:127.0.0.1/reactauth", { useNewUrlParser: true }, function(err) {
     if (err) throw err;
     console.log(`🐆  mongoose connection successful 🐆`.yellow);
     app.listen(PORT, (err)=> {
         if (err) throw err;
         console.log(`🌎  connected on port ${PORT} 🌍`.cyan)
+
     });
 });
+
+db.Log.create({ name: "First Log"})
+.then(function(dbLog) {
+    console.log(dbLog);
+})
+.catch(function(err) {
+    console.log(err.message);
+});
+
+app.post("/submit", function(req, res) {
+    db.Log.create(req.body)
+    .then(function(dbLog) {
+        return db.Log.findOneAndUpdate({}, {$push: {logs: dbLog._id} }, {new: true});
+    })
+    .then(function(dbLog) {
+        res.json(dbLog);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
+app.get("/index", function(req, res) {
+    db.Log.find({})
+    .then(function(dbLog) {
+        res.json(dbLog);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
+
 
 logRoutes.route('/').get(function(req, res) {
     log.find(function(err, logs){
@@ -62,5 +95,42 @@ Log.findById(id, function(err, log) {
     });
 });
 
+logRoutes.route('/add').post(function(req, res){
+    let log = new Log(req.body);
+    log.save()
+    .then(log =>{
+        res.status(200).json({'log': 'log added successfully'});
+    })
+    .catch(err => {
+        res.status(400).send('adding new log failed');
+    });
+});
 
+logRoutes.route('/update/:id').post(function(req, res) {
+    Log.findById(req.params.id, function(err, log) {
+        if(!log)
+        res.status(404).send("data is not found");
+        else
+        log.log_temp = req.body.log_temp;
+        log.log_weight = req.body.log_weight;
+        log.log_sleep = req.body.log_sleep;
+        log.log_spotting = req.body.log_spotting;
+        log.log_hungover = req.body.log_hungover;
+        log.log_bc = req.body.log_bc;
+        log.log_symptoms = req.body.log_symptoms;
+
+        log.save().then(log => {
+            res.json('Log updated!');
+        })
+        .catch(err => {
+            res.status(400).send("Update not possible");
+        });
+
+        
+    });
+});
+
+app.listen(PORT, function() {
+    console.log("App running on port " + PORT + "!");
+});
 
