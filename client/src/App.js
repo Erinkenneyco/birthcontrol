@@ -34,29 +34,30 @@ function App() {
             </Switch>
           </Container>
         </div>
+
       </Router>
     </UserProvider>
   );
 }
 
-export class CreateForm extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTemperature = this.onChangeTemperature.bind(this);
-    this.onChangeWeight = this.onChangeWeight.bind(this);
-    this.onChangeHoursSlept = this.onChangeHoursSlept.bind(this);
-    this.onChangeRateYourSpotting = this.onChangeRateYourSpotting.bind(this);
-    this.onChangeAreYouHungover = this.onChangeAreYouHungover.bind(this);
-    this.onChangeSymptoms = this.onChangeSymptoms.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+//  class Create2 extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.onChangeTemperature = this.onChangeTemperature.bind(this);
+//     this.onChangeWeight = this.onChangeWeight.bind(this);
+//     this.onChangeHoursSlept = this.onChangeHoursSlept.bind(this);
+//     this.onChangeRateYourSpotting = this.onChangeRateYourSpotting.bind(this);
+//     this.onChangeAreYouHungover = this.onChangeAreYouHungover.bind(this);
+//     this.onChangeSymptoms = this.onChangeSymptoms.bind(this);
+//     this.onSubmit = this.onSubmit.bind(this);
 
-    this.state = {
-      temperature: '',
-      weight: '',
-      hours_slept: '',
-      rate_your_spotting: '',
-      are_you_hungover: '',
-      symptoms: '',
+//     this.state = {
+//       temperature: '',
+//       weight: '',
+//       hours_slept: '',
+//       rate_your_spotting: '',
+//       are_you_hungover: '',
+//       symptoms: '',
     
     }
   }
