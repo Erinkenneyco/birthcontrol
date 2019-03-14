@@ -1,10 +1,8 @@
 const express = require("express");
 const app = express();
-const logRoutes = express.Router();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = process.env.PORT || 3001;
-let Log = require('./models/log')
 const colors = require("colors");
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -13,8 +11,8 @@ const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
 
+const db = require("./models");
 app.use(cors());
-app.use('/logs',logRoutes);
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
@@ -43,8 +41,42 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:127.0.0.1/react
     app.listen(PORT, (err)=> {
         if (err) throw err;
         console.log(`🌎  connected on port ${PORT} 🌍`.cyan)
+
     });
 });
+
+db.Log.create({ name: "First Log"})
+.then(function(dbLog) {
+    console.log(dbLog);
+})
+.catch(function(err) {
+    console.log(err.message);
+});
+
+app.post("/submit", function(req, res) {
+    db.Log.create(req.body)
+    .then(function(dbLog) {
+        return db.Log.findOneAndUpdate({}, {$push: {logs: dbLog._id} }, {new: true});
+    })
+    .then(function(dbLog) {
+        res.json(dbLog);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
+app.get("/index", function(req, res) {
+    db.Log.find({})
+    .then(function(dbLog) {
+        res.json(dbLog);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
+
 
 logRoutes.route('/').get(function(req, res) {
     log.find(function(err, logs){
@@ -98,5 +130,7 @@ logRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
-
+app.listen(PORT, function() {
+    console.log("App running on port " + PORT + "!");
+});
 
